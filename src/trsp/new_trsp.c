@@ -210,11 +210,12 @@ _v4trsp(PG_FUNCTION_ARGS) {
             nulls[i] = false;
         }
 
-        int path_id = call_cntr == 0? 0 : result_tuples[call_cntr - 1].seq;
-        path_id += result_tuples[call_cntr].seq == 1? 1 : 0;
+        int64_t seq = call_cntr == 0?  1 : result_tuples[call_cntr - 1].start_id;
+        int64_t path_id = call_cntr == 0? 0 : result_tuples[call_cntr - 1].end_id;
+        path_id += result_tuples[call_cntr].end_id == 1? 1 : 0;
 
         values[0] = Int32GetDatum(call_cntr + 1);
-        values[1] = Int32GetDatum(result_tuples[call_cntr].seq);
+        values[1] = Int32GetDatum(seq);
         values[2] = Int64GetDatum(result_tuples[call_cntr].start_id);
         values[3] = Int64GetDatum(result_tuples[call_cntr].end_id);
         values[4] = Int64GetDatum(result_tuples[call_cntr].node);
@@ -222,7 +223,8 @@ _v4trsp(PG_FUNCTION_ARGS) {
         values[6] = Float8GetDatum(result_tuples[call_cntr].cost);
         values[7] = Float8GetDatum(result_tuples[call_cntr].agg_cost);
 
-        result_tuples[call_cntr].seq = path_id;
+        result_tuples[call_cntr].start_id = result_tuples[call_cntr].edge < 0? 1 : seq + 1;
+        result_tuples[call_cntr].end_id = path_id;
 
         tuple = heap_form_tuple(tuple_desc, values, nulls);
 
@@ -296,8 +298,10 @@ _trsp(PG_FUNCTION_ARGS) {
             nulls[i] = false;
         }
 
+        int64_t seq = call_cntr == 0?  1 : result_tuples[call_cntr - 1].start_id;
+
         values[0] = Int32GetDatum(call_cntr + 1);
-        values[1] = Int32GetDatum(result_tuples[call_cntr].seq);
+        values[1] = Int32GetDatum(seq);
         values[2] = Int64GetDatum(result_tuples[call_cntr].start_id);
         values[3] = Int64GetDatum(result_tuples[call_cntr].end_id);
         values[4] = Int64GetDatum(result_tuples[call_cntr].node);
@@ -305,10 +309,10 @@ _trsp(PG_FUNCTION_ARGS) {
         values[6] = Float8GetDatum(result_tuples[call_cntr].cost);
         values[7] = Float8GetDatum(result_tuples[call_cntr].agg_cost);
 
+        result_tuples[call_cntr].start_id = result_tuples[call_cntr].edge < 0? 1 : seq + 1;
+
         tuple = heap_form_tuple(tuple_desc, values, nulls);
-
         result = HeapTupleGetDatum(tuple);
-
         pfree(values);
         pfree(nulls);
 

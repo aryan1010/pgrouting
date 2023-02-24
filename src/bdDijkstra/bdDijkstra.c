@@ -47,8 +47,6 @@ PGDLLEXPORT Datum _pgr_bddijkstra(PG_FUNCTION_ARGS);
 PG_FUNCTION_INFO_V1(_pgr_bddijkstra);
 
 
-/******************************************************************************/
-/*                          MODIFY AS NEEDED                                  */
 static
 void
 process(
@@ -130,20 +128,13 @@ process(
 
     pgr_SPI_finish();
 }
-/*                                                                            */
-/******************************************************************************/
 
 PGDLLEXPORT Datum _pgr_bddijkstra(PG_FUNCTION_ARGS) {
     FuncCallContext     *funcctx;
     TupleDesc           tuple_desc;
 
-    /**************************************************************************/
-    /*                          MODIFY AS NEEDED                              */
-    /*                                                                        */
     Path_rt  *result_tuples = NULL;
     size_t result_count = 0;
-    /*                                                                        */
-    /**************************************************************************/
 
     if (SRF_IS_FIRSTCALL()) {
         MemoryContext   oldcontext;
@@ -180,8 +171,6 @@ PGDLLEXPORT Datum _pgr_bddijkstra(PG_FUNCTION_ARGS) {
                 &result_count);
         }
 
-        /*                                                                    */
-        /**********************************************************************/
 
         funcctx->max_calls = result_count;
 
@@ -210,18 +199,6 @@ PGDLLEXPORT Datum _pgr_bddijkstra(PG_FUNCTION_ARGS) {
         bool*        nulls;
         size_t       call_cntr = funcctx->call_cntr;
 
-
-        /**********************************************************************/
-        /*                          MODIFY AS NEEDED                          */
-        /*
-           OUT seq INTEGER,
-           OUT path_seq INTEGER,
-           OUT node BIGINT,
-           OUT edge BIGINT,
-           OUT cost FLOAT,
-           OUT agg_cost FLOAT
-         ***********************************************************************/
-
         size_t numb = 8;
         values = palloc(numb * sizeof(Datum));
         nulls = palloc(numb * sizeof(bool));
@@ -232,14 +209,20 @@ PGDLLEXPORT Datum _pgr_bddijkstra(PG_FUNCTION_ARGS) {
             nulls[i] = false;
         }
 
+        /* retreving the value of seq saved on start_id of the previous call_cntr */
+        int64_t seq = call_cntr == 0?  1 : result_tuples[call_cntr - 1].start_id;
+
         values[0] = Int32GetDatum(call_cntr + 1);
-        values[1] = Int32GetDatum(result_tuples[call_cntr].seq);
+        values[1] = Int32GetDatum(seq);
         values[2] = Int64GetDatum(result_tuples[call_cntr].start_id);
         values[3] = Int64GetDatum(result_tuples[call_cntr].end_id);
         values[4] = Int64GetDatum(result_tuples[call_cntr].node);
         values[5] = Int64GetDatum(result_tuples[call_cntr].edge);
         values[6] = Float8GetDatum(result_tuples[call_cntr].cost);
         values[7] = Float8GetDatum(result_tuples[call_cntr].agg_cost);
+
+        /* saving the value of the next seq on start_id of this call_cntr */
+        result_tuples[call_cntr].start_id = result_tuples[call_cntr].edge < 0? 1 : seq + 1;
 
         /**********************************************************************/
 

@@ -70,7 +70,6 @@ do_pgr_directedChPP(
         if (only_cost) {
             if (minCost >= 0.0) {
                 Path_rt edge;
-                edge.seq = -1;
                 edge.node = edge.edge = -1;
                 edge.cost = edge.agg_cost = minCost;
                 pathEdges.push_back(edge);
