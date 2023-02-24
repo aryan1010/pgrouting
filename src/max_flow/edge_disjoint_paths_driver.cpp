@@ -152,7 +152,7 @@ do_pgr_edge_disjoint_paths(
          */
         auto prev = paths[0];
         for (auto &r : paths) {
-            if (&r == &paths[0]) {
+            if (&r == &paths[0] || prev.edge < 0) {
                 r.agg_cost = 0;
             } else {
                 r.agg_cost = prev.agg_cost + prev.cost;
