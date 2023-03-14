@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: pgRouting v3.4.0-dev\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-03-13 13:51+0000\n"
+"POT-Creation-Date: 2023-03-14 14:32+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -2885,22 +2885,7 @@ msgstr ""
 msgid ":doc:`pgr_edgeColoring` - Edge Coloring algorithm using Vizing's theorem."
 msgstr ""
 
-msgid "Returns SET OF ``(vertex_id, color_id)``"
-msgstr ""
-
-msgid "``vertex_id``"
-msgstr ""
-
-msgid "Identifier of the vertex."
-msgstr ""
-
-msgid "``color_id``"
-msgstr ""
-
-msgid "Identifier of the color of the vertex."
-msgstr ""
-
-msgid "The minimum value of color is 1."
+msgid "Returns SET OF ``(node, color_id)``"
 msgstr ""
 
 msgid "Returns SET OF ``(edge_id, color_id)``"
@@ -2909,7 +2894,13 @@ msgstr ""
 msgid "``edge_id``"
 msgstr ""
 
+msgid "``color_id``"
+msgstr ""
+
 msgid "Identifier of the color of the edge."
+msgstr ""
+
+msgid "The minimum value of color is 1."
 msgstr ""
 
 msgid ""
@@ -8820,6 +8811,9 @@ msgstr ""
 msgid "Returns set of |result-node|"
 msgstr ""
 
+msgid "Identifier of the vertex."
+msgstr ""
+
 msgid ""
 "Boost: `Biconnected components & articulation points "
 "<https://www.boost.org/libs/graph/doc/biconnected_components.html>`__"
@@ -13414,6 +13408,9 @@ msgid "**root vertex**"
 msgstr ""
 
 msgid "Returns set of ``(seq, vertex_id, idom)``"
+msgstr ""
+
+msgid "``vertex_id``"
 msgstr ""
 
 msgid "Identifier of vertex ."

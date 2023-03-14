@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: pgRouting v3.6.0-dev\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-03-13 13:51+0000\n"
+"POT-Creation-Date: 2023-03-14 14:32+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -2566,22 +2566,7 @@ msgstr ""
 msgid ":doc:`pgr_edgeColoring` - Edge Coloring algorithm using Vizing's theorem."
 msgstr ""
 
-msgid "Returns SET OF ``(vertex_id, color_id)``"
-msgstr ""
-
-msgid "``vertex_id``"
-msgstr ""
-
-msgid "Identifier of the vertex."
-msgstr ""
-
-msgid "``color_id``"
-msgstr ""
-
-msgid "Identifier of the color of the vertex."
-msgstr ""
-
-msgid "The minimum value of color is 1."
+msgid "Returns SET OF ``(node, color_id)``"
 msgstr ""
 
 msgid "Returns SET OF ``(edge_id, color_id)``"
@@ -2590,7 +2575,13 @@ msgstr ""
 msgid "``edge_id``"
 msgstr ""
 
+msgid "``color_id``"
+msgstr ""
+
 msgid "Identifier of the color of the edge."
+msgstr ""
+
+msgid "The minimum value of color is 1."
 msgstr ""
 
 msgid "`Boost: Sequential Vertex Coloring algorithm documentation <https://www.boost.org/libs/graph/doc/sequential_vertex_coloring.html>`__"
@@ -7294,6 +7285,9 @@ msgstr ""
 msgid "Returns set of |result-node|"
 msgstr ""
 
+msgid "Identifier of the vertex."
+msgstr ""
+
 msgid "Boost: `Biconnected components & articulation points <https://www.boost.org/libs/graph/doc/biconnected_components.html>`__"
 msgstr ""
 
@@ -10708,6 +10702,9 @@ msgstr ""
 msgid "Returns set of ``(seq, vertex_id, idom)``"
 msgstr ""
 
+msgid "``vertex_id``"
+msgstr ""
+
 msgid "Identifier of vertex ."
 msgstr ""
 
@@ -12988,7 +12985,7 @@ msgstr ""
 msgid "This algorithms find the minimum spanning forest in a possibly disconnected graph; in contrast, the most basic form of Prim's algorithm only finds minimum spanning trees in connected graphs. However, running Prim's algorithm separately for each connected component of the graph, then it is called minimum spanning forest."
 msgstr ""
 
-msgid "From boost Graph: \"The algorithm as implemented in Boost.Graph does not produce correct results on graphs with parallel edges."
+msgid "From boost Graph: \"The algorithm as implemented in Boost.Graph does not produce correct results on graphs with parallel edges.\""
 msgstr ""
 
 msgid "Boost: `Prim's algorithm <https://www.boost.org/libs/graph/doc/prim_minimum_spanning_tree.html>`__"
