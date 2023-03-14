@@ -6,7 +6,7 @@ SET
 SELECT * FROM pgr_bipartite(
     $$SELECT id, source, target, cost, reverse_cost FROM edges$$
 ) ORDER BY node;
- node | color_id
+      node | color_id
 -----------+----------
          1 |        0
          2 |        0
@@ -35,7 +35,7 @@ INSERT 0 1
 SELECT * FROM pgr_bipartite(
     $$SELECT id, source, target, cost, reverse_cost FROM edges$$
 );
- node | color_id
+      node | color_id
 -----------+----------
 (0 rows)
 
