@@ -34,7 +34,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 CREATE FUNCTION pgr_bipartite(
     TEXT, -- edges_sql (required)
 
-    OUT vertex_id BIGINT,
+    OUT node BIGINT,
     OUT color_id BIGINT)
 RETURNS SETOF RECORD AS
 $BODY$

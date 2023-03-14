@@ -62,12 +62,12 @@ Result Columns
 
 .. result columns start
 
-Returns SET OF ``(vertex_id, color_id)``
+Returns SET OF ``(node, color_id)``
 
 ===============  =========== ======================================
 Column           Type        Description
 ===============  =========== ======================================
-``vertex_id``    ``BIGINT``  Identifier of the vertex.
+``node``    ``BIGINT``  Identifier of the vertex.
 ``color_id``     ``BIGINT``  Identifier of the color of the vertex.
 
                              - The minimum value of color is 1.
